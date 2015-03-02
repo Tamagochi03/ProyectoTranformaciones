@@ -59,7 +59,7 @@ public class Comiendo extends EstadoGeneral implements Estado, Runnable{
             getTama().getHiloEneregia().incremento(30);
             getTama().getHiloHambre().decremento(50);
             //TODO: Añadir aquí transformación sobre el modelo
-            animacion.estadoDurmiendo();
+            animacion.estadoComiendo();
             setEstado(getTama().getNormal());        
     }
 }
