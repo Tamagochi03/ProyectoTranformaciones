@@ -6,17 +6,22 @@
 
 package estados;
 
+
 import javax.swing.JLabel;
 import logica.MaquinaTamagochi;
+import manejo3d.AnimacionNormal;
 
 /**
  *
  * @author Shinsnake
  */
 public class Normal extends EstadoGeneral implements Estado {
+    AnimacionNormal animacion;
     public Normal(MaquinaTamagochi tamagochi, JLabel mensajePensamiento) {
         setTama(tamagochi);
         setMensajePensamiento(mensajePensamiento);
+        animacion = new AnimacionNormal(getTama().getUniverso(), getTama());
+        
     }
 
     @Override

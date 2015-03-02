@@ -18,26 +18,34 @@ import javax.media.j3d.TransformGroup;
  */
 public class Universo {
 
-    private BranchGroup group;
+    private BranchGroup grupoModelo;
+    private BranchGroup grupoFondo;
     private SimpleUniverse universe;
     private LoadScene ls;
-    TransformGroup tg = new TransformGroup();
+    TransformGroup transModelo = new TransformGroup();
+    TransformGroup transFondo = new TransformGroup();
     Background fondo;
 
     public Universo(Canvas3D canvas3D) {
         universe = new SimpleUniverse(canvas3D);
-        group = new BranchGroup();
+        grupoModelo = new BranchGroup();
+        grupoFondo = new BranchGroup();
         fondo = new Background();
         setup3DGraphics();
     }
 
     private void setup3DGraphics() {
         //Configuración de permisos sobre elementos del universo
-        tg.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
-        group.setCapability(BranchGroup.ALLOW_DETACH);
-        group.setCapability(BranchGroup.ALLOW_CHILDREN_EXTEND);
-        group.setCapability(BranchGroup.ALLOW_CHILDREN_READ);
-        group.setCapability(BranchGroup.ALLOW_CHILDREN_WRITE);
+        transModelo.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        transFondo.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
+        grupoModelo.setCapability(BranchGroup.ALLOW_DETACH);
+        grupoModelo.setCapability(BranchGroup.ALLOW_CHILDREN_EXTEND);
+        grupoModelo.setCapability(BranchGroup.ALLOW_CHILDREN_READ);
+        grupoModelo.setCapability(BranchGroup.ALLOW_CHILDREN_WRITE);
+        grupoFondo.setCapability(BranchGroup.ALLOW_DETACH);
+        grupoFondo.setCapability(BranchGroup.ALLOW_CHILDREN_EXTEND);
+        grupoFondo.setCapability(BranchGroup.ALLOW_CHILDREN_READ);
+        grupoFondo.setCapability(BranchGroup.ALLOW_CHILDREN_WRITE);
         
         //Carga del modelo
         ls = new LoadScene("src\\manejo3d\\recursos\\");
@@ -52,32 +60,50 @@ public class Universo {
         fondo.setApplicationBounds(bounds);
 
         //Agregado de los elmentos al universo
-        tg.addChild(ls.getParte());
-        tg.addChild(fondo);
-        group.addChild(tg);
+        transModelo.addChild(ls.getParte());
+        transFondo.addChild(fondo);
+        grupoModelo.addChild(transModelo);
+        grupoFondo.addChild(transFondo);
         universe.getViewingPlatform().setNominalViewingTransform();
-        universe.addBranchGraph(group);
+        universe.addBranchGraph(grupoModelo);
+        universe.addBranchGraph(grupoFondo);
 
     }
 
-    public TransformGroup getTg() {
-        return tg;
+    public TransformGroup getTransModelo() {
+        return transModelo;
     }
 
-    public BranchGroup getGroup() {
-        return group;
+    public BranchGroup getGrupoModelo() {
+        return grupoModelo;
+    }
+    
+    public BranchGroup getGrupoFondo(){
+        return grupoFondo;
     }
     
     public Background getFondo(){
         return fondo;
     }
+    
+    public TransformGroup getTransFondo(){
+        return transFondo;
+    }
 
-    public void setTg() {
-        group.addChild(tg);
+    public void setTransModelo() {
+        grupoModelo.addChild(transModelo);
     }
     
-    public void setGroup(){
-        universe.addBranchGraph(group);
+    public void setTransFondo() {
+        grupoModelo.addChild(transFondo);
+    }
+    
+    public void setGrupoModelo(){
+        universe.addBranchGraph(grupoModelo);
+    }
+    
+    public void setGrupoFondo(){
+        universe.addBranchGraph(grupoFondo);
     }
 
 }

@@ -27,47 +27,49 @@ public class Transformaciones {
 
     public void rotarRaymanX(int factor) {
         transform.rotX(factor);
-        universo.getTg().setTransform(transform);
+        universo.getTransModelo().setTransform(transform);
 
     }
 
-    public void rotarRaymanY(int factor) {
+    public void rotarRaymanY(double factor) {
+        aislarModelo();
         transform.rotY(factor);
-        universo.getTg().setTransform(transform);
+        universo.getTransModelo().setTransform(transform);
+        unirModelo();
     }
 
-    public void rotarRaymanZ(int factor) {
-        aislarElementos();
+    public void rotarRaymanZ(double factor) {
+        aislarModelo();
         transform.rotZ(factor);
-        universo.getTg().setTransform(transform);
-        unirElementos();
+        universo.getTransModelo().setTransform(transform);
+        unirModelo();
     }
 
     public void trasladarRayman() {
-        aislarElementos();
+        aislarModelo();
         translada = new Vector3f(2F, 3F, -10F);
         transform.setTranslation(translada);
-        universo.getTg().setTransform(transform);
-        unirElementos();
+        universo.getTransModelo().setTransform(transform);
+        unirModelo();
     }
 
     public void escalaRayman() {
         escala = new Vector3d(3D, 1D, 2D);
         transform.setScale(escala);
-        universo.getTg().setTransform(transform);
+        universo.getTransModelo().setTransform(transform);
     }
     
     public void cambiarFondo(String rutaImagen){
-        aislarElementos();
+        aislarFondo();
         TextureLoader tex = new TextureLoader(rutaImagen, null);
         ImageComponent2D imagen= tex.getImage();
         Background background = new Background();
         background.setImage(imagen);
         BoundingSphere bounds = new BoundingSphere();
         background.setApplicationBounds(bounds);
-        universo.getTg().removeChild(universo.getFondo());
-        universo.getTg().addChild(background);
-        unirElementos();
+        universo.getTransFondo().removeChild(universo.getFondo());
+        universo.getTransFondo().addChild(background);
+        unirFondo();
     }
     
     public void acostarRayman(){
@@ -76,21 +78,41 @@ public class Transformaciones {
         Transform3D rotacion = new Transform3D();
         rotacion.rotZ(100);
         Transform3D traslacion = new Transform3D();
-        translada = new Vector3f(2F, 3F, -10F);
+        translada = new Vector3f(0.2F, 0.1F, -6F);
         traslacion.setTranslation(translada);
         combinacion.mul(traslacion, rotacion);
-        universo.getTg().setTransform(combinacion);
+        universo.getTransModelo().setTransform(combinacion);
         unirElementos();
         
     }
     
     public void aislarElementos(){
-        universo.getGroup().detach();
-        universo.getGroup().removeAllChildren();
+        aislarFondo();
+        aislarModelo();
+    }
+    
+    public void aislarFondo(){
+        universo.getGrupoFondo().detach();
+        universo.getGrupoFondo().removeChild(universo.getFondo());
+    }
+    
+    public void aislarModelo(){
+        universo.getGrupoModelo().detach();
+        universo.getGrupoModelo().removeChild(universo.getTransModelo());
+    }
+    
+    public void unirModelo(){
+        universo.setTransModelo();
+        universo.setGrupoModelo();
+    }
+    
+    public void unirFondo(){
+        universo.setTransFondo();
+        universo.setGrupoFondo();
     }
     
     public void unirElementos(){
-        universo.setTg();
-        universo.setGroup();
+        unirModelo();
+        unirFondo();
     }
 }
