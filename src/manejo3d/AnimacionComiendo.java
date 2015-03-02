@@ -22,9 +22,9 @@ public class AnimacionComiendo {
         
     }
     
-    public void estadDurmiendo() {
+    public void estadoComiendo() {
         
-        trans.cambiarFondo("src\\manejo3d\\recursos\\muerto.png");
+        trans.cambiarFondo("src\\manejo3d\\recursos\\cocina.jpg");
         
     }
     
