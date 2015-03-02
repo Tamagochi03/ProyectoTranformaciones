@@ -86,6 +86,15 @@ public class Transformaciones {
         
     }
     
+    public void reset(){
+        aislarModelo();
+        Transform3D transform = new Transform3D();
+        transform.perspective(1, 1, 1, 1);
+        universo.getTransModelo().setTransform(transform);
+        unirModelo();
+        
+    }
+    
     public void aislarElementos(){
         aislarFondo();
         aislarModelo();
@@ -93,7 +102,7 @@ public class Transformaciones {
     
     public void aislarFondo(){
         universo.getGrupoFondo().detach();
-        universo.getGrupoFondo().removeChild(universo.getFondo());
+        universo.getGrupoFondo().removeChild(universo.getTransFondo());
     }
     
     public void aislarModelo(){
@@ -115,4 +124,6 @@ public class Transformaciones {
         unirModelo();
         unirFondo();
     }
+    
+    
 }

@@ -49,4 +49,8 @@ public class Normal extends EstadoGeneral implements Estado {
     @Override
     public void runThread(){
     }
+    
+    public AnimacionNormal getAnimacion(){
+        return animacion;
+    }
 }

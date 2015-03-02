@@ -25,7 +25,7 @@ public class AnimacionJugando {
    public void estadoJugando(){
        
        trans.cambiarFondo("src\\manejo3d\\recursos\\jugar.png");
-        trans.rotarRaymanZ();
+       //trans.rotarRaymanZ();
    }
     
     

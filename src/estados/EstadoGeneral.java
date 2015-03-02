@@ -68,6 +68,9 @@ public class EstadoGeneral {
             
         }
         tama.setEstado(estado);
+        if(tama.getEstadoActual() instanceof Normal){
+            ((Normal)tama.getNormal()).getAnimacion().reanudarNormal();
+        }
     }
     
     

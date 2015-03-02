@@ -17,7 +17,7 @@ public class BarraHambre extends BarraEstado implements Runnable{
     public BarraHambre(int contador, MaquinaTamagochi tamagochi){
         super(contador);
         this.tamagochi = tamagochi;
-        velocidad = 500;
+        velocidad = 5000;
         hilo = new Thread(this);
         hilo.start();
     }

@@ -95,7 +95,7 @@ public class Universo {
     }
     
     public void setTransFondo() {
-        grupoModelo.addChild(transFondo);
+        grupoFondo.addChild(transFondo);
     }
     
     public void setGrupoModelo(){

@@ -49,9 +49,7 @@ public class Comiendo extends EstadoGeneral implements Estado, Runnable{
     
     @Override
     public void run(){
-        try {
-            
-            
+        try {            
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Comiendo.class.getName()).log(Level.SEVERE, null, ex);
