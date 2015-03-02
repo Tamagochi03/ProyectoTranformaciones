@@ -23,7 +23,7 @@ public class Comiendo extends EstadoGeneral implements Estado, Runnable{
     public Comiendo(MaquinaTamagochi tamagochi, JLabel mensajePensamiento) {
         setTama(tamagochi);
         setMensajePensamiento(mensajePensamiento);
-      //  animacion = new AnimacionComiendo(getTama().getTg());
+      animacion = new AnimacionComiendo(getTama().getUniverso());
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Comiendo extends EstadoGeneral implements Estado, Runnable{
             getTama().getHiloEneregia().incremento(30);
             getTama().getHiloHambre().decremento(50);
             //TODO: Añadir aquí transformación sobre el modelo
-            //getTama().setTg(animacion.estadoComiendo());
+            animacion.estadoComiendo();
             setEstado(getTama().getNormal());        
     }
 }

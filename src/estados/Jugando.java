@@ -20,7 +20,7 @@ public class Jugando extends EstadoGeneral implements Estado, Runnable{
     public Jugando(MaquinaTamagochi tamagochi, JLabel mensajePensamiento) {
         setTama(tamagochi);
         setMensajePensamiento(mensajePensamiento);
-       // animacion = new AnimacionJugando(getTama().getTg());
+       animacion = new AnimacionJugando(getTama().getUniverso());
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Jugando extends EstadoGeneral implements Estado, Runnable{
     public void run(){
         try{
             
-            //getTama().setTg(animacion.estadoJugando());
+            animacion.estadoJugando();
             Thread.sleep(5000);
             getTama().getHiloEneregia().decremento(10);
             getTama().getHiloHambre().incremento(20);
