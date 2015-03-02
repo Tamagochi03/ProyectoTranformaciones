@@ -25,6 +25,7 @@ public class AnimacionComiendo {
     public void estadoComiendo() {
         
         trans.cambiarFondo("src\\manejo3d\\recursos\\cocina.jpg");
+        trans.trasladarRayman();
         
     }
     
