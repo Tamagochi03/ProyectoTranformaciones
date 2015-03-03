@@ -7,7 +7,7 @@ package estados;
 
 import javax.swing.JLabel;
 import logica.MaquinaTamagochi;
-import manejo3d.AnimacionAburrido;
+import manejo3d.AnimacionCansado;
 
 /**
  *
@@ -15,11 +15,12 @@ import manejo3d.AnimacionAburrido;
  */
 public class Cansado extends EstadoGeneral implements Estado {
     
-    AnimacionAburrido animacion;
+    AnimacionCansado animacion;
+    
     public Cansado(MaquinaTamagochi tamagochi, JLabel mensajePensamiento) {
         setTama(tamagochi);
         setMensajePensamiento(mensajePensamiento);
-        //animacion = new AnimacionAburrido(getTama().getTg());
+        animacion = new AnimacionCansado(getTama().getUniverso());     
     }
 
     @Override
@@ -27,6 +28,7 @@ public class Cansado extends EstadoGeneral implements Estado {
         getMensajePensamiento().setText("Si! a dormir!");
         setEstado(getTama().getDurmiendo());
         getTama().getEstadoActual().runThread();
+        
     }
 
     @Override
@@ -41,22 +43,9 @@ public class Cansado extends EstadoGeneral implements Estado {
     
     @Override
     public void runThread(){
-        Thread hilo;
-        hilo = new Thread((Runnable) this);
-        hilo.start();
     }
     
-    public void run(){
-         try{
-             
-           // getTama().setTg(animacion.estadoAburrido());
-            //
-            Thread.sleep(5000);
-            getTama().getHiloEneregia().incremento(30);
-            getTama().getHiloSueno().decremento(50);
-            setEstado(getTama().getNormal());
-        }catch (Exception e){
-            System.out.println("Error al dormir el hilo"); //TODO: delete , este metodo es solo para debug del manejo de hilos
-        }
+    public AnimacionCansado getAnimacion(){
+        return animacion;
     }
 }

@@ -49,6 +49,7 @@ public class Comiendo extends EstadoGeneral implements Estado, Runnable{
     
     @Override
     public void run(){
+        animacion.estadoComiendo();
         try {            
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
@@ -56,8 +57,7 @@ public class Comiendo extends EstadoGeneral implements Estado, Runnable{
         }
             getTama().getHiloEneregia().incremento(30);
             getTama().getHiloHambre().decremento(50);
-            //TODO: Añadir aquí transformación sobre el modelo
-            animacion.estadoComiendo();
+            //TODO: Añadir aquí transformación sobre el modelo            
             setEstado(getTama().getNormal());        
     }
 }

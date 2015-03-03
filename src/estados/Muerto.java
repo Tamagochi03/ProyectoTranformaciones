@@ -8,6 +8,8 @@ package estados;
 
 import javax.swing.JLabel;
 import logica.MaquinaTamagochi;
+import manejo3d.AnimacionAburrido;
+import manejo3d.AnimacionMuerto;
 
 /**
  *
@@ -15,9 +17,11 @@ import logica.MaquinaTamagochi;
  */
 public class Muerto extends EstadoGeneral implements Estado {
 
+    AnimacionMuerto animacion;
     public Muerto(MaquinaTamagochi tamagochi, JLabel mensajePensamiento) {
         setTama(tamagochi);
         setMensajePensamiento(mensajePensamiento);
+        animacion =  new AnimacionMuerto(getTama().getUniverso());
     }
 
     @Override
@@ -37,5 +41,9 @@ public class Muerto extends EstadoGeneral implements Estado {
     
     @Override
     public void runThread(){
+    }
+    
+    public AnimacionMuerto getAnimacion(){
+        return animacion;
     }
 }

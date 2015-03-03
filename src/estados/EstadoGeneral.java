@@ -6,6 +6,8 @@
 
 package estados;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.media.j3d.TransformGroup;
 import javax.swing.JLabel;
 import logica.MaquinaTamagochi;
@@ -51,21 +53,29 @@ public class EstadoGeneral {
                 estado = tama.getMuerto();
             } else if (tama.getHambre() > 40) {
                 estado = tama.getHambriento();
+                //((Hambriento)tama.getHambriento()).getAnimacion().estadoHambriento();
                 tama.getHiloEneregia().decremento(3);
                 //TODO: delete si no es efectivo tama.getHiloEneregia().setVelocidad(10);
             } else if (tama.getSueno() > 10) {
                 estado = tama.getCansado();
+                //((Cansado)tama.getCansado()).getAnimacion().estadoCansado();
                 tama.getHiloEneregia().decremento(2);
                 //TODO: delete si no es efectivo tama.getHiloEneregia().setVelocidad(1);
             }
         }
+        
         else if(estado instanceof Hambriento || estado instanceof Cansado){
             if (tama.getEnergia() > 0 || tama.getHambre() < 40 || tama.getSueno() < 70) {
                 estado = tama.getNormal();
             }
         }
         else if(tama.getEstadoActual() instanceof Muerto){
-            
+            ((Muerto)tama.getMuerto()).getAnimacion().estadoMuerto();
+            Thread hilos[] = new Thread[20];
+            Thread.enumerate(hilos);
+            for (int i = 0; i < 10; i++) {
+                hilos[i].stop();
+            }
         }
         tama.setEstado(estado);
         if(tama.getEstadoActual() instanceof Normal){

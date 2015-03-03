@@ -6,9 +6,9 @@
 
 package estados;
 
+import manejo3d.AnimacionHambriento;
 import javax.swing.JLabel;
 import logica.MaquinaTamagochi;
-import manejo3d.AnimacionAburrido;
 
 /**
  *
@@ -16,11 +16,11 @@ import manejo3d.AnimacionAburrido;
  */
 public class Hambriento extends EstadoGeneral implements Estado{
     
-    AnimacionAburrido animacion;
+    AnimacionHambriento animacion;
     public Hambriento(MaquinaTamagochi tamagochi, JLabel mensajePensamiento) {
         setTama(tamagochi);
         setMensajePensamiento(mensajePensamiento);
-      //  animacion = new AnimacionAburrido(getTama().getTg());
+        animacion = new AnimacionHambriento(getTama().getUniverso());
     }
 
     @Override
@@ -48,10 +48,7 @@ public class Hambriento extends EstadoGeneral implements Estado{
     }
     
     public void run(){
-         try{
-             
-            //getTama().setTg(animacion.estadoAburrido());
-            //
+         try{ 
             Thread.sleep(5000);
             getTama().getHiloEneregia().incremento(30);
             getTama().getHiloSueno().decremento(50);
@@ -60,5 +57,11 @@ public class Hambriento extends EstadoGeneral implements Estado{
             System.out.println("Error al dormir el hilo"); //TODO: delete , este metodo es solo para debug del manejo de hilos
         }
     }
+
+    public AnimacionHambriento getAnimacion() {
+        return animacion;
+    }
+    
+    
 
 }

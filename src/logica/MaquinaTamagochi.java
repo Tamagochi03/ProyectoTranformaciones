@@ -118,7 +118,7 @@ public class MaquinaTamagochi {
 
     public Estado getNormal() {
         return normal;
-    }
+    }   
 
     public Estado getEstadoActual() {
         return estadoActual;

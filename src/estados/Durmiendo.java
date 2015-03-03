@@ -49,13 +49,13 @@ public class Durmiendo extends EstadoGeneral implements Estado, Runnable {
          try{
              //transformación sobre el modelo
             animacion.estadoDurmiendo();
-            //
             Thread.sleep(5000);
-            getTama().getHiloEneregia().incremento(30);
-            getTama().getHiloSueno().decremento(50);
-            setEstado(getTama().getNormal());
+            //
         }catch (Exception e){
             e.printStackTrace(); //TODO: delete , este metodo es solo para debug del manejo de hilos
-        }
+        }            
+            getTama().getHiloEneregia().incremento(30);
+            getTama().getHiloSueno().decremento(50);
+            setEstado(getTama().getNormal());        
     }
 }

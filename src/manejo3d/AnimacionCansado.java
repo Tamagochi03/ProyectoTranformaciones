@@ -3,27 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package manejo3d;
 
 /**
  *
- * @author YareliS
+ * @author Shinsnake
  */
-
-public class AnimacionMuerto {
-    
+public class AnimacionCansado {
     Transformaciones trans;
     Universo universo;
     
-    public AnimacionMuerto(Universo universo) {  
+    public AnimacionCansado(Universo universo) {  
         this.universo = universo;
-        trans = new Transformaciones(this.universo);
+        trans = new Transformaciones(this.universo);        
     }
     
-    public void estadoMuerto(){        
-        trans.cambiarFondo("src\\manejo3d\\recursos\\rip.png");
-        trans.aislarModelo();
+    public void estadoCansado() {        
+        trans.cambiarFondo("src\\manejo3d\\recursos\\Cansado.jpg");
+        trans.rotarRaymanX(1);
     }
-    
-    
 }

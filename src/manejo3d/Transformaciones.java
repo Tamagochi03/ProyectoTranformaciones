@@ -25,7 +25,7 @@ public class Transformaciones {
         this.universo = universo;
     }
 
-    public void rotarRaymanX(int factor) {
+    public void rotarRaymanX(double factor) {
         transform.rotX(factor);
         universo.getTransModelo().setTransform(transform);
 
@@ -59,7 +59,7 @@ public class Transformaciones {
         universo.getTransModelo().setTransform(transform);
     }
     
-    public void cambiarFondo(String rutaImagen){
+    public void cambiarFondo(String rutaImagen){        
         aislarFondo();
         TextureLoader tex = new TextureLoader(rutaImagen, null);
         ImageComponent2D imagen= tex.getImage();

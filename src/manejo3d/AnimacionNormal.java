@@ -36,7 +36,7 @@ public class AnimacionNormal implements Runnable{
             factor = factor + 0.1;
             trans.rotarRaymanY(factor);
             try {
-                Thread.sleep(50);
+                Thread.sleep(20);
             } catch (InterruptedException ex) {
                 Logger.getLogger(AnimacionNormal.class.getName()).log(Level.SEVERE, null, ex);
             }

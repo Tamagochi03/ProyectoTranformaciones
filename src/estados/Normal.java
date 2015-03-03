@@ -31,7 +31,7 @@ public class Normal extends EstadoGeneral implements Estado {
 
     @Override
     public void jugar() {
-        if(getTama().getAburrimiento() > 10){
+        if(getTama().getAburrimiento() > 1){
         setEstado(getTama().getJugando());
         getTama().getEstadoActual().runThread();
         }
