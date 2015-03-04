@@ -51,21 +51,21 @@ public class EstadoGeneral {
         if (estado instanceof Normal || estado instanceof Cansado || estado instanceof Hambriento) {
             if (tama.getEnergia() <= 0) {
                 estado = tama.getMuerto();
-            } else if (tama.getHambre() > 40) {
+            } else if (tama.getHambre() > 60) {
                 estado = tama.getHambriento();
-                //((Hambriento)tama.getHambriento()).getAnimacion().estadoHambriento();
+                ((Hambriento)tama.getHambriento()).getAnimacion().estadoHambriento();
                 tama.getHiloEneregia().decremento(3);
                 //TODO: delete si no es efectivo tama.getHiloEneregia().setVelocidad(10);
-            } else if (tama.getSueno() > 10) {
+            } else if (tama.getSueno() > 40) {
                 estado = tama.getCansado();
-                //((Cansado)tama.getCansado()).getAnimacion().estadoCansado();
+                ((Cansado)tama.getCansado()).getAnimacion().estadoCansado();
                 tama.getHiloEneregia().decremento(2);
                 //TODO: delete si no es efectivo tama.getHiloEneregia().setVelocidad(1);
             }
         }
         
         else if(estado instanceof Hambriento || estado instanceof Cansado){
-            if (tama.getEnergia() > 0 || tama.getHambre() < 40 || tama.getSueno() < 70) {
+            if (tama.getEnergia() > 0 && tama.getHambre() < 40 && tama.getSueno() < 70) {
                 estado = tama.getNormal();
             }
         }

@@ -8,7 +8,6 @@ package estados;
 
 import javax.swing.JLabel;
 import logica.MaquinaTamagochi;
-import manejo3d.AnimacionAburrido;
 import manejo3d.AnimacionMuerto;
 
 /**

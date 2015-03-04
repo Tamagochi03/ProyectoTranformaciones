@@ -21,6 +21,6 @@ public class AnimacionCansado {
     
     public void estadoCansado() {        
         trans.cambiarFondo("src\\manejo3d\\recursos\\Cansado.jpg");
-        trans.rotarRaymanX(1);
+        trans.tumbarRayman();
     }
 }

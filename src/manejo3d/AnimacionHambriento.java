@@ -21,6 +21,6 @@ public class AnimacionHambriento {
     
     public void estadoHambriento() {        
         trans.cambiarFondo("src\\manejo3d\\recursos\\hambre.jpg");
-        trans.rotarRaymanX(1);
+        trans.escalaRayman(1, 0.35, 1);
     }
 }

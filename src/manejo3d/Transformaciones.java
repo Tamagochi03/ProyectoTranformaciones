@@ -3,11 +3,12 @@
  */
 package manejo3d;
 
+import com.sun.j3d.utils.geometry.Box;
 import com.sun.j3d.utils.image.TextureLoader;
-import javax.media.j3d.Background;
-import javax.media.j3d.BoundingSphere;
-import javax.media.j3d.ImageComponent2D;
+import javax.media.j3d.Appearance;
+import javax.media.j3d.Shape3D;
 import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
 
@@ -26,16 +27,28 @@ public class Transformaciones {
     }
 
     public void rotarRaymanX(double factor) {
-        transform.rotX(factor);
+        transform.rotX(factor);      
         universo.getTransModelo().setTransform(transform);
 
     }
+    
+    public void tumbarRayman(){
+        Transform3D rotacionY = new Transform3D();
+        Transform3D rotacionZ = new Transform3D();
+        transform.rotX(30);
+        rotacionY.rotY(50);
+        rotacionZ.rotZ(5);
+        transform.mul(rotacionY);
+        transform.mul(rotacionZ);
+        
+        universo.getTransModelo().setTransform(transform);
+    }
 
     public void rotarRaymanY(double factor) {
-        aislarModelo();
+       // aislarModelo();
         transform.rotY(factor);
         universo.getTransModelo().setTransform(transform);
-        unirModelo();
+        //unirModelo();
     }
 
     public void rotarRaymanZ(double factor) {
@@ -46,64 +59,87 @@ public class Transformaciones {
     }
 
     public void trasladarRayman() {
-        aislarModelo();
-        translada = new Vector3f(2F, 3F, -10F);
+        //aislarModelo();
+        Transform3D escala = new Transform3D();
+        Transform3D rotacionY = new Transform3D();
+        Vector3d vectorEscala = new Vector3d(0.6D, 0.6D, 0.6D);
+        
+        
+        rotacionY.rotY(70);
+        escala.setScale(vectorEscala);        
+        translada = new Vector3f(1.5F, 0.2F, 0F);
         transform.setTranslation(translada);
+        transform.mul(escala, rotacionY);
+        
         universo.getTransModelo().setTransform(transform);
-        unirModelo();
+        //unirModelo();
+    }
+    
+    public void trasladarObjeto(Box shape){
+        TransformGroup tg = universo.getTransFondo();
+        Transform3D trans = new Transform3D();
+        translada = new Vector3f(0F, 0F, -1F);
+        trans.setTranslation(translada);        
+        tg.setTransform(trans);
+        
     }
 
-    public void escalaRayman() {
-        escala = new Vector3d(3D, 1D, 2D);
+    public void escalaRayman(double x, double y, double z) {
+        escala = new Vector3d(x, y, z);
         transform.setScale(escala);
         universo.getTransModelo().setTransform(transform);
     }
     
     public void cambiarFondo(String rutaImagen){        
-        aislarFondo();
+       // aislarFondo();
         TextureLoader tex = new TextureLoader(rutaImagen, null);
-        ImageComponent2D imagen= tex.getImage();
-        Background background = new Background();
-        background.setImage(imagen);
-        BoundingSphere bounds = new BoundingSphere();
-        background.setApplicationBounds(bounds);
-        universo.getTransFondo().removeChild(universo.getFondo());
-        universo.getTransFondo().addChild(background);
-        unirFondo();
+        Appearance ap = universo.getFondo().getAppearance();
+        ap.setTexture(tex.getTexture());
+       // unirFondo();
     }
     
     public void acostarRayman(){
-        aislarElementos();
+        //aislarElementos();
         Transform3D combinacion = new Transform3D();
-        Transform3D rotacion = new Transform3D();
-        rotacion.rotZ(100);
+        Transform3D rotacionZ = new Transform3D();
+        Transform3D rotacionY = new Transform3D();
+        Transform3D rotacionX = new Transform3D();
         Transform3D traslacion = new Transform3D();
-        translada = new Vector3f(0.2F, 0.1F, -6F);
+        Transform3D escala = new Transform3D();
+        Vector3d vectorEscala = new Vector3d(0.4D, 0.4D, 0.4D);        
+        rotacionZ.rotZ(100);
+        rotacionY.rotY(180);
+        rotacionX.rotX(0);
+        translada = new Vector3f(0.2F, 0.1F, 0F);
+        escala.setScale(vectorEscala);
         traslacion.setTranslation(translada);
-        combinacion.mul(traslacion, rotacion);
-        universo.getTransModelo().setTransform(combinacion);
-        unirElementos();
         
+        combinacion.mul(traslacion, rotacionZ);
+        combinacion.mul(rotacionY);
+        combinacion.mul(escala);
+        
+        universo.getTransModelo().setTransform(combinacion);
+        //unirElementos();        
     }
     
     public void reset(){
-        aislarModelo();
+        //aislarModelo();
         Transform3D transform = new Transform3D();
         transform.perspective(1, 1, 1, 1);
         universo.getTransModelo().setTransform(transform);
-        unirModelo();
+        //unirModelo();
         
     }
     
-    public void aislarElementos(){
-        aislarFondo();
-        aislarModelo();
-    }
+//    public void aislarElementos(){
+//        aislarFondo();
+//        aislarModelo();
+//    }
     
-    public void aislarFondo(){
-        universo.getGrupoFondo().detach();
-        universo.getGrupoFondo().removeChild(universo.getTransFondo());
-    }
+//    public void aislarFondo(){
+//        universo.getGrupoFondo().detach();
+//        universo.getGrupoFondo().removeChild(universo.getTransFondo());
+//    }
     
     public void aislarModelo(){
         universo.getGrupoModelo().detach();
@@ -115,15 +151,15 @@ public class Transformaciones {
         universo.setGrupoModelo();
     }
     
-    public void unirFondo(){
-        universo.setTransFondo();
-        universo.setGrupoFondo();
-    }
+//    public void unirFondo(){
+//        universo.setTransFondo();
+//        universo.setGrupoFondo();
+//    }
     
-    public void unirElementos(){
-        unirModelo();
-        unirFondo();
-    }
+//    public void unirElementos(){
+//        unirModelo();
+//        unirFondo();
+//    }
     
     
 }

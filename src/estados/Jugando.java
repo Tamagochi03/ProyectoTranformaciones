@@ -56,7 +56,8 @@ public class Jugando extends EstadoGeneral implements Estado, Runnable{
             //TODO: Añadir aquí transformación sobre el modelo
             setEstado(getTama().getNormal());
         }catch (Exception e){
-            System.out.println("Error al dormir el hilo"); //TODO: delete , este metodo es solo para debug del manejo de hilos
+            e.printStackTrace();
+            //System.out.println("Error al dormir el hilo"); //TODO: delete , este metodo es solo para debug del manejo de hilos
         }
     }
 }

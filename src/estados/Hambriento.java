@@ -60,8 +60,6 @@ public class Hambriento extends EstadoGeneral implements Estado{
 
     public AnimacionHambriento getAnimacion() {
         return animacion;
-    }
-    
-    
+    }       
 
 }

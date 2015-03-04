@@ -33,7 +33,7 @@ public class AnimacionNormal implements Runnable{
             if(!(tama.getEstadoActual() instanceof Normal)){
                 hilo.suspend();
             }
-            factor = factor + 0.1;
+            factor = factor + 0.05;
             trans.rotarRaymanY(factor);
             try {
                 Thread.sleep(20);
