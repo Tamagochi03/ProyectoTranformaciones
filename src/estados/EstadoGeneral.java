@@ -1,24 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package estados;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.media.j3d.TransformGroup;
 import javax.swing.JLabel;
 import logica.MaquinaTamagochi;
 
 /**
  *
- * @author Shinsnake
+ * @author Timoteo Latisnere
  */
-
-//TODO: delete mensajePensamiento del constructor
 public class EstadoGeneral {
+
     private TransformGroup tg;
     private MaquinaTamagochi tama;
     private JLabel mensajePensamiento;
@@ -46,31 +37,28 @@ public class EstadoGeneral {
     public void setMensajePensamiento(JLabel mensajePensamiento) {
         this.mensajePensamiento = mensajePensamiento;
     }
-    
-    public void setEstado(Estado estado){
+
+    public void setEstado(Estado estado) {
         if (estado instanceof Normal || estado instanceof Cansado || estado instanceof Hambriento) {
             if (tama.getEnergia() <= 0) {
                 estado = tama.getMuerto();
             } else if (tama.getHambre() > 60) {
                 estado = tama.getHambriento();
-                ((Hambriento)tama.getHambriento()).getAnimacion().estadoHambriento();
+                ((Hambriento) tama.getHambriento()).getAnimacion().estadoHambriento();
                 tama.getHiloEneregia().decremento(3);
-                //TODO: delete si no es efectivo tama.getHiloEneregia().setVelocidad(10);
+
             } else if (tama.getSueno() > 40) {
                 estado = tama.getCansado();
-                ((Cansado)tama.getCansado()).getAnimacion().estadoCansado();
+                ((Cansado) tama.getCansado()).getAnimacion().estadoCansado();
                 tama.getHiloEneregia().decremento(2);
-                //TODO: delete si no es efectivo tama.getHiloEneregia().setVelocidad(1);
+
             }
-        }
-        
-        else if(estado instanceof Hambriento || estado instanceof Cansado){
+        } else if (estado instanceof Hambriento || estado instanceof Cansado) {
             if (tama.getEnergia() > 0 && tama.getHambre() < 40 && tama.getSueno() < 70) {
                 estado = tama.getNormal();
             }
-        }
-        else if(tama.getEstadoActual() instanceof Muerto){
-            ((Muerto)tama.getMuerto()).getAnimacion().estadoMuerto();
+        } else if (tama.getEstadoActual() instanceof Muerto) {
+            ((Muerto) tama.getMuerto()).getAnimacion().estadoMuerto();
             Thread hilos[] = new Thread[20];
             Thread.enumerate(hilos);
             for (int i = 0; i < 10; i++) {
@@ -78,10 +66,9 @@ public class EstadoGeneral {
             }
         }
         tama.setEstado(estado);
-        if(tama.getEstadoActual() instanceof Normal){
-            ((Normal)tama.getNormal()).getAnimacion().reanudarNormal();
+        if (tama.getEstadoActual() instanceof Normal) {
+            ((Normal) tama.getNormal()).getAnimacion().reanudarNormal();
         }
     }
-    
-    
+
 }

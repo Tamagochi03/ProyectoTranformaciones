@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package manejo3d;
 
 import estados.Jugando;
@@ -10,35 +5,33 @@ import logica.MaquinaTamagochi;
 
 /**
  *
- * @author YareliS
+ * @author Yareli Sarahi
  */
-
-
 public class AnimacionJugando implements Runnable {
-    
+
     Transformaciones trans;
     Universo universo;
     Thread hilo;
     MaquinaTamagochi tama;
-    
-    public AnimacionJugando(Universo universo, MaquinaTamagochi tama) {  
+
+    public AnimacionJugando(Universo universo, MaquinaTamagochi tama) {
         this.universo = universo;
         this.tama = tama;
         trans = new Transformaciones(this.universo);
-        
+
     }
-    
-   public void estadoJugando(){
-       
-       trans.cambiarFondo("src\\manejo3d\\recursos\\jugar.png");
-       hilo = new Thread(this);
-       hilo.start();
+
+    public void estadoJugando() {
+
+        trans.cambiarFondo("src\\manejo3d\\recursos\\jugar.png");
+        hilo = new Thread(this);
+        hilo.start();
     }
-   
-    public void run(){
+
+    public void run() {
         double factor = 0;
-        while(true){
-            if(!(tama.getEstadoActual() instanceof Jugando)){
+        while (true) {
+            if (!(tama.getEstadoActual() instanceof Jugando)) {
                 hilo.stop();
                 trans.reset();
             }
@@ -49,7 +42,6 @@ public class AnimacionJugando implements Runnable {
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
-        }    
+        }
     }
 }
-

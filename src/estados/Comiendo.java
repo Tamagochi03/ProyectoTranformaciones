@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package estados;
 
 import java.util.logging.Level;
@@ -14,16 +8,16 @@ import manejo3d.AnimacionComiendo;
 
 /**
  *
- * @author Shinsnake
+ * @author Timoteo Latisnere
  */
-public class Comiendo extends EstadoGeneral implements Estado, Runnable{
-    
+public class Comiendo extends EstadoGeneral implements Estado, Runnable {
+
     AnimacionComiendo animacion;
-    
+
     public Comiendo(MaquinaTamagochi tamagochi, JLabel mensajePensamiento) {
         setTama(tamagochi);
         setMensajePensamiento(mensajePensamiento);
-      animacion = new AnimacionComiendo(getTama().getUniverso());
+        animacion = new AnimacionComiendo(getTama().getUniverso());
     }
 
     @Override
@@ -40,24 +34,24 @@ public class Comiendo extends EstadoGeneral implements Estado, Runnable{
     public void comer() {
         getMensajePensamiento().setText("Creo que no podría comer más!");
     }
-    
-    public void runThread(){
+
+    public void runThread() {
         Thread hilo;
         hilo = new Thread(this);
         hilo.start();
     }
-    
+
     @Override
-    public void run(){
+    public void run() {
         animacion.estadoComiendo();
-        try {            
+        try {
             Thread.sleep(5000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Comiendo.class.getName()).log(Level.SEVERE, null, ex);
         }
-            getTama().getHiloEneregia().incremento(30);
-            getTama().getHiloHambre().decremento(50);
-            //TODO: Añadir aquí transformación sobre el modelo            
-            setEstado(getTama().getNormal());        
+        getTama().getHiloEneregia().incremento(30);
+        getTama().getHiloHambre().decremento(50);
+
+        setEstado(getTama().getNormal());
     }
 }

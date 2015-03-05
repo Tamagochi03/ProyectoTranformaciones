@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package entorno;
 
 import javax.swing.JProgressBar;
@@ -11,7 +5,7 @@ import logica.MaquinaTamagochi;
 
 /**
  *
- * @author Shinsnake
+ * @author Timoteo Latisnere
  */
 public class BarraAburrimiento extends JProgressBar implements Runnable{
     MaquinaTamagochi tama;

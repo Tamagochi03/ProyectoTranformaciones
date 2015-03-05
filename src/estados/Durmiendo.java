@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package estados;
 
 import javax.swing.JLabel;
@@ -12,10 +6,12 @@ import manejo3d.AnimacionDurmiendo;
 
 /**
  *
- * @author Shinsnake
+ * @author Timoteo Latisnere
  */
 public class Durmiendo extends EstadoGeneral implements Estado, Runnable {
+
     AnimacionDurmiendo animacion;
+
     public Durmiendo(MaquinaTamagochi tamagochi, JLabel mensajePensamiento) {
         setTama(tamagochi);
         setMensajePensamiento(mensajePensamiento);
@@ -36,28 +32,27 @@ public class Durmiendo extends EstadoGeneral implements Estado, Runnable {
     public void comer() {
         getMensajePensamiento().setText("ZzZzZz...comida...ñam");
     }
-    
+
     @Override
-    public void runThread(){
+    public void runThread() {
         Thread hilo;
         hilo = new Thread(this);
         hilo.start();
     }
-    
+
     @Override
-    public void run(){
-        animacion.estadoDurmiendo(); 
-        try{
-             //transformación sobre el modelo            
+    public void run() {
+        animacion.estadoDurmiendo();
+        try {
+            //transformación sobre el modelo            
             getTama().getHiloSueno().decremento(50);
             Thread.sleep(5000);
             //
-        }catch (Exception e){
-            e.printStackTrace(); //TODO: delete , este metodo es solo para debug del manejo de hilos
-        }            
-            getTama().getHiloEneregia().incremento(30);
-            
-            
-            setEstado(getTama().getNormal());        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        getTama().getHiloEneregia().incremento(30);
+
+        setEstado(getTama().getNormal());
     }
 }

@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package estados;
 
 import manejo3d.AnimacionHambriento;
@@ -12,7 +6,7 @@ import logica.MaquinaTamagochi;
 
 /**
  *
- * @author Shinsnake
+ * @author Timoteo Latisnere
  */
 public class Hambriento extends EstadoGeneral implements Estado{
     
@@ -54,7 +48,7 @@ public class Hambriento extends EstadoGeneral implements Estado{
             getTama().getHiloSueno().decremento(50);
             setEstado(getTama().getNormal());
         }catch (Exception e){
-            System.out.println("Error al dormir el hilo"); //TODO: delete , este metodo es solo para debug del manejo de hilos
+            System.out.println("Error al dormir el hilo");
         }
     }
 

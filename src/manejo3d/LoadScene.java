@@ -9,7 +9,6 @@ package manejo3d;
  */
 import com.sun.j3d.loaders.Scene;
 import com.sun.j3d.loaders.objectfile.ObjectFile;
-import com.sun.j3d.utils.geometry.Primitive; // Contains the object loaded from disk.
 import com.sun.j3d.utils.image.TextureLoader;
 import java.awt.Container;
 import java.io.FileReader;
@@ -23,7 +22,7 @@ public class LoadScene {
     Scene scene;
 
     static TextureLoader loader;
-    static Texture texture; 
+    static Texture texture;
 
     public LoadScene(String location) {
         this.location = location;
@@ -45,7 +44,6 @@ public class LoadScene {
 
         /* Por default, el BrachGroup de la Scene ya contiene una referencia a la figura, no puede haber más de 1, por lo que la removemos. */
         this.parte = shape;
-        //parte = shape;
         BranchGroup root = scene.getSceneGroup();
         root = scene.getSceneGroup();
         root.removeChild(shape);
@@ -55,13 +53,8 @@ public class LoadScene {
         Appearance ap = new Appearance();
         ap.setTexture(texture);
         ap.setTextureAttributes(texAttr);
-        int primflags = Primitive.GENERATE_NORMALS
-                + Primitive.GENERATE_TEXTURE_COORDS;
-        ObjectFile loader = new ObjectFile(ObjectFile.RESIZE);
 
         this.parte.setAppearance(ap);
-        //parte.setAppearance(ap);
-
     }
 
     public void listSceneNamedObjects() {
@@ -75,11 +68,8 @@ public class LoadScene {
         return parte;
     }
 
-    /* public BranchGroup getRoot() {
-     return root;
-     }*/
     Map<String, Shape3D> getNamedObjects() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("No soportado.");
     }
 
 }

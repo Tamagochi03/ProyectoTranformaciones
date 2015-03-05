@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package estados;
 
 import javax.swing.JLabel;
@@ -11,16 +6,16 @@ import manejo3d.AnimacionCansado;
 
 /**
  *
- * @author Shinsnake
+ * @author Timoteo Latisnere
  */
 public class Cansado extends EstadoGeneral implements Estado {
-    
+
     AnimacionCansado animacion;
-    
+
     public Cansado(MaquinaTamagochi tamagochi, JLabel mensajePensamiento) {
         setTama(tamagochi);
         setMensajePensamiento(mensajePensamiento);
-        animacion = new AnimacionCansado(getTama().getUniverso());     
+        animacion = new AnimacionCansado(getTama().getUniverso());
     }
 
     @Override
@@ -28,7 +23,7 @@ public class Cansado extends EstadoGeneral implements Estado {
         getMensajePensamiento().setText("Si! a dormir!");
         setEstado(getTama().getDurmiendo());
         getTama().getEstadoActual().runThread();
-        
+
     }
 
     @Override
@@ -40,12 +35,12 @@ public class Cansado extends EstadoGeneral implements Estado {
     public void comer() {
         getMensajePensamiento().setText("Estoy cansado no hambriento!");
     }
-    
+
     @Override
-    public void runThread(){
+    public void runThread() {
     }
-    
-    public AnimacionCansado getAnimacion(){
+
+    public AnimacionCansado getAnimacion() {
         return animacion;
     }
 }

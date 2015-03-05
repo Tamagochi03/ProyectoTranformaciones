@@ -4,7 +4,6 @@
 package manejo3d;
 
 import com.sun.j3d.utils.geometry.Box;
-import com.sun.j3d.utils.geometry.ColorCube;
 import com.sun.j3d.utils.geometry.Primitive;
 import com.sun.j3d.utils.image.TextureLoader;
 import com.sun.j3d.utils.universe.SimpleUniverse;
@@ -24,11 +23,11 @@ public class Universo {
     private BranchGroup grupoFondo;
     private SimpleUniverse universe;
     private LoadScene ls;
-    
+
     TransformGroup transModelo = new TransformGroup();
     TransformGroup transFondo = new TransformGroup();
     Box fondo = new Box(1.5f, 1.5f, 0.0f,
-        Box.GENERATE_TEXTURE_COORDS, new Appearance());
+            Box.GENERATE_TEXTURE_COORDS, new Appearance());
     Appearance ap = new Appearance();
     Transformaciones trans = new Transformaciones(this);
 
@@ -45,27 +44,26 @@ public class Universo {
         grupoModelo.setCapability(BranchGroup.ALLOW_CHILDREN_EXTEND);
         grupoModelo.setCapability(BranchGroup.ALLOW_CHILDREN_READ);
         grupoModelo.setCapability(BranchGroup.ALLOW_CHILDREN_WRITE);
-        
+
         fondo.setCapability(Primitive.ENABLE_APPEARANCE_MODIFY);
-        
+
         ap.setCapability(Appearance.ALLOW_TEXTURE_WRITE);
-        
+
         transFondo.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
         transModelo.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
-        
-        
+
         //Carga del modelo
         ls = new LoadScene("src\\manejo3d\\recursos\\");
         ls.load();
         ls.listSceneNamedObjects();
-        
+
         //Carga del fondo inicial
-        TextureLoader tex = new TextureLoader("src\\manejo3d\\recursos\\fondoInicial.jpg", null);   
+        TextureLoader tex = new TextureLoader("src\\manejo3d\\recursos\\fondoInicial.jpg", null);
         TextureAttributes textAttrib = new TextureAttributes();
         textAttrib.setTextureMode(TextureAttributes.REPLACE);
         ap.setTextureAttributes(textAttrib);
         ap.setTexture(tex.getTexture());
-        
+
         fondo.setAppearance(ap);
 
         //Agregado de los elmentos al universo
@@ -86,32 +84,28 @@ public class Universo {
     public BranchGroup getGrupoModelo() {
         return grupoModelo;
     }
-    
-        public BranchGroup getGrupoFondo(){
+
+    public BranchGroup getGrupoFondo() {
         return grupoFondo;
     }
-    
-    public Box getFondo(){
+
+    public Box getFondo() {
         return fondo;
     }
-    
-    public TransformGroup getTransFondo(){
+
+    public TransformGroup getTransFondo() {
         return transFondo;
     }
 
     public void setTransModelo() {
         grupoModelo.addChild(transModelo);
     }
-    
-//    public void setTransFondo() {
-//        grupoFondo.addChild(transFondo);
-//    }
-    
-    public void setGrupoModelo(){
+
+    public void setGrupoModelo() {
         universe.addBranchGraph(grupoModelo);
     }
-    
-    public void setGrupoFondo(){
+
+    public void setGrupoFondo() {
         universe.addBranchGraph(grupoFondo);
     }
 

@@ -1,20 +1,21 @@
 /*
  * Aquí se implementan los métodos necesarios de la clase
-   Transformaciones para un tamagochi que está durmiendo.
+ Transformaciones para un tamagochi que está durmiendo.
  */
+// @author Yareli Sarahi
 package manejo3d;
 
 public class AnimacionDurmiendo {
-    
+
     Transformaciones trans;
     Universo universo;
-    
-    public AnimacionDurmiendo(Universo universo) {  
+
+    public AnimacionDurmiendo(Universo universo) {
         this.universo = universo;
-        trans = new Transformaciones(this.universo);        
+        trans = new Transformaciones(this.universo);
     }
-    
-    public void estadoDurmiendo() {        
+
+    public void estadoDurmiendo() {
         trans.cambiarFondo("src\\manejo3d\\recursos\\habitacion.jpg");
         trans.acostarRayman();
     }

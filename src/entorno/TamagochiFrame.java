@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entorno;
 
 import java.awt.*;
@@ -43,7 +38,7 @@ public class TamagochiFrame extends JFrame implements ActionListener {
     private JLabel lAburrimiento;
     private JLabel lEnergia;
     private JLabel mensaje;
-    private JLabel estado; //TODO:delte
+    private JLabel estado;
 
     /**
      * Declaración de Barras de progreso
@@ -87,7 +82,7 @@ public class TamagochiFrame extends JFrame implements ActionListener {
 
         mensaje = new JLabel("Hola, soy Rayman");
         estado = new JLabel("Estado Actual");
-        //TODO: verificar funcionalidad y orden de ejecución de estas líneas
+
         universo = new Universo(canvas3D);
 
         tamagochi = new MaquinaTamagochi(mensaje, estado, universo);
@@ -135,7 +130,7 @@ public class TamagochiFrame extends JFrame implements ActionListener {
     }
 
     void setup3DGraphics() {
-        
+
     }
 
     public void actionPerformed(ActionEvent e) {

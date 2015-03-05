@@ -1,9 +1,11 @@
 package logica;
 
+// @author Timoteo Latisnere
 import estados.*;
 import estados.Estado;
 import javax.swing.JLabel;
 import manejo3d.Universo;
+
 public class MaquinaTamagochi {
 
     Estado cansado;
@@ -14,42 +16,35 @@ public class MaquinaTamagochi {
     Estado muerto;
     Estado normal;
     MonitorDeEstados monitor;
-    
+
     JLabel mensaje;
-    JLabel mensajeEstado; //TODO: delete
+    JLabel mensajeEstado;
 
     int energia;
     int hambre;
     int sueno;
     int aburrimiento;
-    
+
     Thread hiloMonitor;
-    
+
     BarraEnergia hiloEneregia;
     BarraHambre hiloHambre;
     BarraSueno hiloSueno;
     BarraAburrimiento hiloAburrimiento;
 
     Estado estadoActual;
-    
-    //TODO: no es definitivo este uso
+
     Universo universo;
 
-//TODO: delete Label estado del constructor
-    public MaquinaTamagochi(JLabel mensaje, JLabel estado, Universo universo){
+    public MaquinaTamagochi(JLabel mensaje, JLabel estado, Universo universo) {
         energia = 99;
         hambre = 1;
         sueno = 1;
         aburrimiento = 1;
         this.mensaje = mensaje;
-        
-         //TODO: no es definitivo este uso
+
         this.universo = universo;
-        
-        //
-        
-        //Se instancían todos los estados
-        
+
         cansado = new Cansado(this, this.mensaje);
         hambriento = new Hambriento(this, this.mensaje);
         durmiendo = new Durmiendo(this, this.mensaje);
@@ -57,19 +52,18 @@ public class MaquinaTamagochi {
         jugando = new Jugando(this, this.mensaje);
         muerto = new Muerto(this, this.mensaje);
         normal = new Normal(this, this.mensaje);
-        
+
         estadoActual = normal;
-        
+
         //Se lazan los hilos que controlan las variables asociadas a las barras de progreso de la ventana.
-        
         hiloEneregia = new BarraEnergia(energia, this);
         hiloHambre = new BarraHambre(hambre, this);
         hiloSueno = new BarraSueno(sueno, this);
         hiloAburrimiento = new BarraAburrimiento(aburrimiento, this);
-        
-        mensajeEstado = estado; //TODO: delete
-        estado.setText(getNombreEstado()); //TODO:delete
-              
+
+        mensajeEstado = estado;
+        estado.setText(getNombreEstado());
+
         monitor = new MonitorDeEstados(this, this.mensajeEstado);
     }
 
@@ -80,12 +74,12 @@ public class MaquinaTamagochi {
 
     public void comer() {
         estadoActual.comer();
-        mensajeEstado.setText(getNombreEstado()); //TODO: delete
+        mensajeEstado.setText(getNombreEstado());
     }
 
     public void jugar() {
         estadoActual.jugar();
-        mensajeEstado.setText(getNombreEstado()); //TODO: delete
+        mensajeEstado.setText(getNombreEstado());
     }
 
     void setState(Estado estado) {
@@ -118,7 +112,7 @@ public class MaquinaTamagochi {
 
     public Estado getNormal() {
         return normal;
-    }   
+    }
 
     public Estado getEstadoActual() {
         return estadoActual;
@@ -181,15 +175,13 @@ public class MaquinaTamagochi {
     }
 
     public void setEstado(Estado estado) {
-            estadoActual = estado;
+        estadoActual = estado;
     }
-    
-    public Universo getUniverso(){
+
+    public Universo getUniverso() {
         return universo;
     }
 
-    //Este metodo es auxiliar en el desarrollo para verificar la transicion de estados
-    //TODO: delete
     public String getNombreEstado() {
         return estadoActual.getClass().getName();
     }
